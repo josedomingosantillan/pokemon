@@ -1,0 +1,42 @@
+<%= stylesheet_link_tag 'pokemon_with_rails' %>
+<div class="row">
+  <div class="col-md-12 offset-md-5 text-right" style="margin-bottom: 2em;">
+    <div class="pag_right" id="pag1"><%= page_entries_info @pokemons, entry_name: @pokemons.length == 1 ? 'Pokemon' : 'Pokemon'.pluralize %></div>
+    <div class="detall_left"><%= paginate @pokemons, params: {controller: 'pokemon_with_rails', action: 'index'}, :theme => 'twitter-bootstrap-3', :pagination_class => 'pagination-sm', remote: true %></div>
+  </div>
+</div>
+<% @pokemons.each do |pokemon| %>
+  <% imagen = RestClient.get "https://pokeapi.co/api/v2/pokemon/#{pokemon['name']}", {'Content-Type': 'application/json', 'Accept': 'application/json'} %>
+  <% result = JSON.parse imagen.to_str %>
+  <% imagen_mostar = result['sprites']['front_default'] %>
+  <div class="col-md-3">
+    <div class="card">
+      <img class="card-img-top" src="<%= imagen_mostar %>" alt="img_<%= pokemon['name'] %>" style=" width: 100px; height: 100px;margin: auto;display: block">
+      <div class="card-body">
+        <h5 class="card-title" style="text-align: center"><%= pokemon['name'] %>
+          <span><%= result['stats'][0]['base_stat'] %>hp</span></h5>
+        <p class="card-body-text">Exp <%= result['base_experience'] %></p>
+      </div>
+      <div class="card-footer">
+        <div class="card-footer-social">
+          <h3><%= result['stats'][1]['base_stat'] %></h3>
+          <p><i class="fa fa-rocket" aria-hidden="true"></i> Ataque</p>
+        </div>
+        <div class="card-footer-social">
+          <h3><%= result['stats'][2]['base_stat'] %></h3>
+          <p><i class="fa fa-star" aria-hidden="true"></i> Especial</p>
+        </div>
+        <div class="card-footer-social">
+          <h3><%= result['stats'][3]['base_stat'] %></h3>
+          <p><i class="fa fa-shield" aria-hidden="true"></i> Defensa</p>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+<div class="row">
+  <div class="col-md-12 offset-md-5 text-right" style="margin-bottom: 2em;">
+    <div class="detall_left"><%= paginate @pokemons, params: {controller: 'pokemon_with_rails', action: 'index'}, :theme => 'twitter-bootstrap-3', :pagination_class => 'pagination-sm', remote: true %></div>
+    <div class="pag_right" id="pag1"><%= page_entries_info @pokemons, entry_name: @pokemons.length == 1 ? 'Pokemon' : 'Pokemon'.pluralize %></div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pokemon</title>
+
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= csrf_meta_tags %>
+  <%= Gon::Base.render_data %>
+
+</head>
+
+<body>
+<%= yield %>
+<div class="col-md-12" align="center">
+  <div id="copyright">Copyright&copy; 2021 - Página creada por José Domingo Santillán Rodríguez - Todos los derechos reservados</div>
+</div>
+</body>
+</html>

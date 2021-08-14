@@ -1,0 +1,40 @@
+<%= stylesheet_link_tag 'principal_page' %>
+<div class="row" style="margin-left: 10px">
+  <div class="col-md-12">
+    <div class="ibox float-e-margins" style="margin-right: 20px">
+      <div class="ibox-title" style="text-align: center; background-color: #730E15; color: white; margin-top: 10px; height: 130px; border-radius: 30px">
+        <br>
+        <h1>Pokemon Api <i class="fa fa-database"></i></h1>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="ibox float-e-margins" style="margin-right: 20px">
+      <div class="ibox-title" style="text-align: center; background-color: #003057; color: white; margin-top: 10px; height: 450px; border-radius: 30px">
+        <br>
+        <h1>Javascript.</h1>
+        <br>
+        <h3>En esta versión se podrá visualizar el consumno de la API de Pokemon, utilizando Javascript <i class="fa fa-laptop"></i></h3>
+        <br>
+        <%= link_to home_index_path, class: 'btn btn_back' do %>
+          Ir <i class="fa fa-share"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="ibox float-e-margins" style="margin-right: 20px">
+      <div class="ibox-title" style="text-align: center; background-color: #edff21; color: white; margin-top: 10px; height: 450px; border-radius: 30px">
+        <br>
+        <h1>Ruby on Rails.</h1>
+        <br>
+        <h3>En esta versión se podrá visualizar el consumno de la API de Pokemon, utilizando Ruby on Rails <i class="fa fa-laptop"></i></h3>
+        <br>
+        <%= link_to pokemon_with_rails_index_path, class: 'btn btn_back' do %>
+          Ir <i class="fa fa-share"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+

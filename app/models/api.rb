@@ -1,8 +1,13 @@
 class Api < ApplicationRecord
+  attr_reader :uri
 
-  def self.PokemoAll
+  def initialize(uri)
+    @uri = uri
+  end
+
+  def PokemoAll
     begin
-      datos = RestClient.get 'https://pokeapi.co/api/v2/pokemon/?offset=1000&limit=1000', {'Content-Type': 'application/json', 'Accept': 'application/json'}
+      datos = RestClient.get "#{uri}?offset=1000&limit=1000", { 'Content-Type': 'application/json', 'Accept': 'application/json' }
       return datos
     rescue RestClient::ExceptionWithResponse => e
       return JSON.parse(e.response).to_json
@@ -11,9 +16,9 @@ class Api < ApplicationRecord
     end
   end
 
-  def self.PokemoSearch(pokemon)
+  def PokemoSearch(pokemon)
     begin
-      datos = RestClient.get "https://pokeapi.co/api/v2/pokemon/#{pokemon}", {'Content-Type': 'application/json', 'Accept': 'application/json'}
+      datos = RestClient.get "#{uri}#{pokemon}", { 'Content-Type': 'application/json', 'Accept': 'application/json' }
       return datos
     rescue RestClient::ExceptionWithResponse => e
       return JSON.parse(e.response).to_json

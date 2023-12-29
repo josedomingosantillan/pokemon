@@ -15,7 +15,9 @@
 <body>
 <%= yield %>
 <div class="col-md-12" align="center">
-  <div id="copyright">Copyright&copy; 2021 - Página creada por José Domingo Santillán Rodríguez - Todos los derechos reservados</div>
+  <div id="copyright">Copyright&copy; <%= Time.now.strftime("%Y") %> - Página creada por José Domingo Santillán
+    Rodríguez - Todos los derechos reservados
+  </div>
 </div>
 </body>
 </html>

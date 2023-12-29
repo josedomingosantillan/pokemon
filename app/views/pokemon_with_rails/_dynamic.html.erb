@@ -2,11 +2,11 @@
 <div class="row">
   <div class="col-md-12 offset-md-5 text-right" style="margin-bottom: 2em;">
     <div class="pag_right" id="pag1"><%= page_entries_info @pokemons, entry_name: @pokemons.length == 1 ? 'Pokemon' : 'Pokemon'.pluralize %></div>
-    <div class="detall_left"><%= paginate @pokemons, params: {controller: 'pokemon_with_rails', action: 'index'}, :theme => 'twitter-bootstrap-3', :pagination_class => 'pagination-sm', remote: true %></div>
+    <div class="detall_left"><%= paginate @pokemons, params: { controller: 'pokemon_with_rails', action: 'index' }, :theme => 'twitter-bootstrap-3', :pagination_class => 'pagination-sm', remote: true %></div>
   </div>
 </div>
 <% @pokemons.each do |pokemon| %>
-  <% imagen = RestClient.get "https://pokeapi.co/api/v2/pokemon/#{pokemon['name']}", {'Content-Type': 'application/json', 'Accept': 'application/json'} %>
+  <% imagen = Api.new(@uri).PokemoSearch(pokemon['name']) %>
   <% result = JSON.parse imagen.to_str %>
   <% imagen_mostar = result['sprites']['front_default'] %>
   <div class="col-md-3">
@@ -36,7 +36,7 @@
 <% end %>
 <div class="row">
   <div class="col-md-12 offset-md-5 text-right" style="margin-bottom: 2em;">
-    <div class="detall_left"><%= paginate @pokemons, params: {controller: 'pokemon_with_rails', action: 'index'}, :theme => 'twitter-bootstrap-3', :pagination_class => 'pagination-sm', remote: true %></div>
+    <div class="detall_left"><%= paginate @pokemons, params: { controller: 'pokemon_with_rails', action: 'index' }, :theme => 'twitter-bootstrap-3', :pagination_class => 'pagination-sm', remote: true %></div>
     <div class="pag_right" id="pag1"><%= page_entries_info @pokemons, entry_name: @pokemons.length == 1 ? 'Pokemon' : 'Pokemon'.pluralize %></div>
   </div>
 </div>
